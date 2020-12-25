@@ -97,7 +97,7 @@ public class DetailActivity extends AppCompatActivity{
         fullNameText.setText(student.getFullName());
         emailText.setText(student.getEmail());
         birthdayText.setText(
-                student.getBirthDay() != null ? student.getBirthDay().toString() : "1970-01-01");
+                student.getBirthDay() != null ? student.getBirthDay().toString() : "2000-01-20");
         addressText.setText(student.getAddress());
     }
 

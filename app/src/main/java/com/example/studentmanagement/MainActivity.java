@@ -1,10 +1,13 @@
 package com.example.studentmanagement;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,10 +15,13 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.github.javafaker.Faker;
 
 import java.io.File;
 import java.sql.Date;
@@ -24,9 +30,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements StudentAdapter.StudentClickListener{
     private final String database = "students";
-    //    String createTable = "create table student( " + "id varchar(8) primary key not null, " +
-    //                         "fullname varchar(30) not null, " + "email varchar(30) not null, " +
-    //                         "birthday Date not null, " + "address varchar(40) not null)";
     private static SQLiteDatabase db;
     private static String myDbPath;
     private StudentAdapter studentAdapter;
@@ -49,7 +52,15 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
         File storagePath = getApplication().getFilesDir();
         myDbPath = storagePath + "/" + database;
 
+        //deleteOldData();
+        try{
+            NewDatabase newDatabase = new NewDatabase();
+            newDatabase.execute();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         db = getDatabase();
+
         studentList = new ArrayList<>();
         checkList = new ArrayList<>();
 
@@ -173,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
 
         multiSelect.setOnClickListener(v -> {
             new AlertDialog.Builder(this).setTitle("").setMessage("DELETE ALL SELECTED ?")
-                                         .setPositiveButton("DELETE?", (dialog, which) -> {
+                                         .setPositiveButton("DELETE", (dialog, which) -> {
                                              try{
                                                  int count = 0;
                                                  for(int position = 0;
@@ -227,13 +238,57 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
         return db;
     }
 
+    public void createDatabase(){
+        String createTable = "create table student( " + "id varchar(8) primary key not null, " +
+                             "fullname varchar(30) not null, " + "email varchar(30) not null, " +
+                             "birthday Date not null, " + "address varchar(40) not null)";
+        db = getDatabase();
+        db.beginTransaction();
+        Cursor cursor = db.rawQuery(
+                "SELECT \n" + "    name\n" + "FROM \n" + "    sqlite_master \n" + "WHERE \n" +
+                "    type ='table' AND \n" + "    name = 'student';", null);
+        cursor.moveToPosition(-1);
+        if(!cursor.moveToNext()){
+            db.execSQL(createTable);
+            Log.v("Create new table", "successfully");
+        }
+        cursor = db.rawQuery("select * from student", null);
+        cursor.moveToPosition(-1);
+        if(!cursor.moveToNext()){
+            for(int i = 0; i < 200; i++){
+                Faker faker = new Faker();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("id", faker.idNumber().valid());
+                contentValues.put("fullname", faker.name().fullName());
+                contentValues.put("email", faker.internet().emailAddress());
+                contentValues.put("birthday",
+                                  String.valueOf(new Date(faker.date().birthday().getTime())));
+                contentValues.put("address", faker.address().fullAddress());
+                db.insert("student", null, contentValues);
+            }
+            Log.v("Insert values", "successfully");
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
+    public void deleteOldData(){
+        db = getDatabase();
+        db.beginTransaction();
+        db.execSQL("drop table student");
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
     class SyncTask extends AsyncTask<Void, Void, Boolean>{
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         protected Boolean doInBackground(Void... voids){
             studentList.clear();
             checkList.clear();
             try{
+                db = getDatabase();
                 db.beginTransaction();
                 String select = "select * from student";
                 Cursor cursor = db.rawQuery(select, null);
@@ -243,8 +298,7 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
                     student.setId(cursor.getString(0));
                     student.setFullName(cursor.getString(1));
                     student.setEmail(cursor.getString(2));
-                    long date = cursor.getLong(3) * 1000;
-                    student.setBirthDay(new Date(date));
+                    student.setBirthDay(Date.valueOf(cursor.getString(3)));
                     student.setAddress(cursor.getString(4));
                     studentList.add(student);
                     checkList.add(false);
@@ -314,6 +368,37 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
                 db.endTransaction();
             }
             return false;
+        }
+    }
+
+    class NewDatabase extends AsyncTask<Void, Void, Boolean>{
+        private final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        String waitMsg = "Creating/fetching database... ";
+
+        @Override
+        protected void onPreExecute(){
+            dialog.setTitle(waitMsg);
+            dialog.setCancelable(false);
+            dialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids){
+            try{
+                createDatabase();
+                return true;
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean unused){
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
+            onResume();
         }
     }
 }

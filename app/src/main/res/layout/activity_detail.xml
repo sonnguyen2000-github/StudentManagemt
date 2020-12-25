@@ -88,7 +88,7 @@
 
     <EditText
             android:id="@+id/email"
-            android:layout_width="250dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/id"
             android:layout_alignParentEnd="true"
@@ -101,7 +101,8 @@
             android:layout_marginBottom="10sp"
             android:duplicateParentState="true"
             android:enabled="false"
-            android:text="SON.NH183976@SIS.HUST.EDU.VN"
+            android:gravity="right"
+            android:text="son.nh183976@sis.hust.edu.vn"
             android:textSize="15sp" />
 
     <TextView

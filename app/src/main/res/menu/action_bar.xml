@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/search_bar"
+            android:icon="@android:drawable/ic_menu_search"
+            android:orderInCategory="100"
+            android:title="SEARCH"
+            app:actionViewClass="android.widget.SearchView"
+            app:showAsAction="always" />
+    <item
+            android:id="@+id/multi_select"
+            android:orderInCategory="110"
+            android:title="DELETE SELECTED"
+            app:actionViewClass="android.widget.Button"
+            app:showAsAction="always" />
+    <item
+            android:id="@+id/new_btn"
+            android:orderInCategory="105"
+            android:title="NEW"
+            app:actionViewClass="android.widget.Button"
+            app:showAsAction="ifRoom" />
+
+</menu>

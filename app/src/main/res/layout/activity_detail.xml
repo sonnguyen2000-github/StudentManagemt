@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DetailActivity">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="20sp"
+            android:text="FULL NAME"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    <EditText
+            android:id="@+id/full_name"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:duplicateParentState="true"
+            android:enabled="false"
+            android:gravity="right"
+            android:inputType="none"
+            android:text="Nguyễn Hồng Sơn"
+            android:textSize="20sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/full_name"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="108dp"
+            android:layout_marginLeft="108dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
+            android:text="ID"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    <EditText
+            android:id="@+id/id"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/full_name"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:duplicateParentState="true"
+            android:enabled="false"
+            android:gravity="right"
+            android:inputType="none"
+            android:text="20183976"
+            android:textSize="20sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
+            android:text="EMAIL"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    <EditText
+            android:id="@+id/email"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:duplicateParentState="true"
+            android:enabled="false"
+            android:text="SON.NH183976@SIS.HUST.EDU.VN"
+            android:textSize="15sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
+            android:text="BIRTHDAY"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/birthday"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:duplicateParentState="true"
+            android:enabled="false"
+            android:gravity="right"
+            android:text="20/01/2000"
+            android:textSize="20sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/birthday"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="38dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
+            android:text="ADDRESS"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    <EditText
+            android:id="@+id/address"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/birthday"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:duplicateParentState="true"
+            android:enabled="false"
+            android:gravity="right"
+            android:inputType="none"
+            android:text="Hanoi, Vietnam"
+            android:textAlignment="inherit"
+            android:textSize="15sp" />
+
+    <Button
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginRight="67dp"
+            android:layout_marginBottom="20sp"
+            android:text="BACK" />
+
+    <Button
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="230dp"
+            android:layout_marginRight="230dp"
+            android:layout_toStartOf="@id/back_btn"
+            android:layout_toLeftOf="@id/back_btn"
+            android:duplicateParentState="true"
+            android:enabled="false"
+            android:text="SAVE" />
+
+
+</RelativeLayout>

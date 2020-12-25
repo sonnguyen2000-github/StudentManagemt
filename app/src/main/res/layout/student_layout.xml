@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="20183976"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:layout_toRightOf="@+id/id"
+            android:text="Nguyễn Hồng Sơn"
+            android:textSize="20sp" />
+
+    <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id"
+            android:layout_margin="10sp"
+            android:text="SON.NH183976@SIS.HUST.EDU.VN"
+            android:textSize="20sp" />
+
+    <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/full_name"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10sp"
+            android:layout_marginLeft="20sp" />
+
+</RelativeLayout>

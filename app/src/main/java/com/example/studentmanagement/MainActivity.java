@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -121,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
                                                          studentList.get(position).getId())){
                                                      studentList.remove(position);
                                                      studentAdapter.notifyDataSetChanged();
+                                                     Toast.makeText(this, "Item deleted",
+                                                                    Toast.LENGTH_SHORT).show();
                                                  }
                                              }catch(Exception e){
                                                  e.printStackTrace();
@@ -204,6 +207,8 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
                                                      }
                                                  }
                                                  studentAdapter.notifyDataSetChanged();
+                                                 Toast.makeText(this, "Items deleted",
+                                                                Toast.LENGTH_SHORT).show();
                                                  Log.v("Total delete", count + "");
                                              }catch(Exception e){
                                                  e.printStackTrace();

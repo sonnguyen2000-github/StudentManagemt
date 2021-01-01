@@ -311,12 +311,10 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
                 cursor.close();
                 db.setTransactionSuccessful();
                 System.out.println("Synced successfully");
-
+                db.endTransaction();
                 return true;
             }catch(Exception e){
                 e.printStackTrace();
-            }finally{
-                db.endTransaction();
             }
             return false;
         }
@@ -347,12 +345,10 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
                 }
                 cursor.close();
                 db.setTransactionSuccessful();
-
+                db.endTransaction();
                 return true;
             }catch(Exception e){
                 e.printStackTrace();
-            }finally{
-                db.endTransaction();
             }
             return false;
         }
@@ -366,11 +362,10 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.St
                 db.beginTransaction();
                 db.delete("student", "id = ? ", strings);
                 db.setTransactionSuccessful();
+                db.endTransaction();
                 return true;
             }catch(Exception e){
                 e.printStackTrace();
-            }finally{
-                db.endTransaction();
             }
             return false;
         }
